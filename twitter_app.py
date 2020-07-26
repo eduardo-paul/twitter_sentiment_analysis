@@ -1,20 +1,11 @@
-from requests import get
-from requests_oauthlib import OAuth1
-from json import load, loads
-
-SEARCH_TERM = 'brasil'
-LANGUAGE = 'pt'
-twitter_request = f'https://stream.twitter.com/1.1/statuses/filter.json?track={SEARCH_TERM}&language={LANGUAGE}'
+from json import load
+import tweepy
 
 with open('credentials.json', 'r') as file:
-    credentials = load(file).values()
+    credentials = load(file)
 
-response = get(
-    twitter_request,
-    auth=OAuth1(*credentials),
-    stream=True
-)
+auth = tweepy.OAuthHandler(credentials['consumer_key'], credentials['consumer_secret'])
+auth.set_access_token(credentials['access_token'], credentials['access_token_secret'])
 
-for chunk in response.iter_content(chunk_size=None):
-    tweet = loads(chunk)['text']
-    print(tweet)
+api = tweepy.API(auth)
+
