@@ -9,3 +9,15 @@ auth.set_access_token(credentials['access_token'], credentials['access_token_sec
 
 api = tweepy.API(auth)
 
+class MyStreamListener(tweepy.StreamListener):
+
+    def on_status(self, status):
+        print(status.text)
+
+myStreamListener = MyStreamListener()
+myStream = tweepy.Stream(
+    auth=api.auth,
+    listener=myStreamListener
+)
+
+myStream.filter(track=['python'])
