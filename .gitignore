@@ -1,0 +1,11 @@
+# Credentials file
+credentials.json
+
+# All hidden files
+.*
+
+# Allow .gitignore to be tracked
+!.gitignore
+
+docs/
+data/
