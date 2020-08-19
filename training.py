@@ -47,9 +47,12 @@ tweets = tweets.str.replace(url_regexp, 'URL')
 # If a letter appears more than two times in a row, the sequence is replaced with only two repetitions
 
 #%%
-repeated_letters_regexp = compile(r'(\w*([a-zA-Z])\2{2,}\w*)')
-repeat = tweets.str.extractall(repeated_letters_regexp)
-repeat
-
+repeated_letters_regexp = compile(r'([a-zA-Z])\1{2,}')
+tweets = tweets.str.replace(
+    repeated_letters_regexp,
+    lambda m: 2*m.group(1)
+)
+# %% [markdown]
+# This data set presents some uncompiled html code. Here we are replacing the &quot; sequence by " so we can we rid of it when tokenizing.
 #%%
-repeat.sample(n=100).values
+tweets = tweets.str.replace('&quot;', '"')
