@@ -5,6 +5,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
+from preproc_tools import email_proc
 
 ### DATA INGESTION
 
@@ -21,7 +22,9 @@ y = data['sentiment'].replace(to_replace=4, value=1)
 
 pipe = make_pipeline(
     # pre-processing
-    CountVectorizer(),
+    CountVectorizer(
+        preprocessor=email_proc
+    ),
     # training
     MultinomialNB()
 )

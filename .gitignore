@@ -9,3 +9,4 @@ credentials.json
 
 docs/
 data/
+__pycache__/
