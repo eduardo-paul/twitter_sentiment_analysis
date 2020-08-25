@@ -6,6 +6,7 @@ from sklearn.model_selection import KFold
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
 import preproc_tools as pt
+import log_tools as lt
 
 ### DATA INGESTION
 
@@ -21,11 +22,11 @@ y = data['sentiment'].replace(to_replace=4, value=1)
 ### PIPELINE CREATION 
 
 preprocessors = [
+    #pt.mult_letters_proc,
     pt.email_proc,
     pt.handle_proc,
     pt.url_proc,
-    pt.mult_letters_proc,
-    pt.html_proc,
+    #pt.html_proc,
 ]
 
 pipe = make_pipeline(
@@ -40,7 +41,7 @@ pipe = make_pipeline(
 ### CROSS-VALIDATION DEFINITION
 
 k_fold = KFold(
-    n_splits=5,
+    n_splits=10,
     shuffle=True,
     random_state=101
 )
@@ -55,10 +56,4 @@ scores = cross_val_score(
     n_jobs=-1
 )
 
-with open('score.txt', 'w') as file:
-    file.write(
-        f'mean score: {scores.mean()}\nstd dev: {scores.std()}\n'
-    )
-
-scores
-#%%
+lt.log_scores(pipe, scores, Path('./score.txt'))

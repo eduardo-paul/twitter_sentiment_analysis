@@ -1,2 +1,74 @@
-mean score: 0.78142375
-std dev: 0.0008949633372379053
+       pipeline: Pipeline(steps=[('customvectorizer', CustomVectorizer(preprocessors=[])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.7807125  0.78185    0.78184375 0.78258125 0.78466875 0.781175
+0.7821     0.78154375 0.7798     0.7810625 ]
+       mean score: 0.78173375
+       std dev: 0.0012277399205450636
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function mult_letters_proc at 0x113b5adc0>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.78115625 0.7817375  0.782275   0.781675   0.78505625 0.7810875
+0.7825375  0.781      0.7809375  0.78098125]
+       mean score: 0.781844375
+       std dev: 0.0011978674084075485
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function email_proc at 0x113b2f820>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.78079375 0.780775   0.78153125 0.78143125 0.78434375 0.78063125
+0.78168125 0.780225   0.7803375  0.78024375]
+       mean score: 0.781199375
+       std dev: 0.001164304546982882
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function handle_proc at 0x113b42790>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.77776875 0.7784875  0.77929375 0.77991875 0.7820625  0.77936875
+0.77979375 0.7776625  0.77898125 0.77894375]
+       mean score: 0.779228125
+       std dev: 0.001188526694325785
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function url_proc at 0x113b57f70>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.7830125  0.78289375 0.78381875 0.78364375 0.78626875 0.7825
+0.78399375 0.78190625 0.78228125 0.7822875 ]
+       mean score: 0.783260625
+       std dev: 0.0012066387003262255
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function html_proc at 0x113b5ae50>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.78065625 0.7807     0.78190625 0.78153125 0.7843625  0.780825
+0.78229375 0.78004375 0.78028125 0.78031875]
+       mean score: 0.7812918750000001
+       std dev: 0.0012395848914555935
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function email_proc at 0x113b2f820>,
+                                                <function handle_proc at 0x113b42790>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.77775625 0.778475   0.77933125 0.7799375  0.78206875 0.7793875
+0.77981875 0.77766875 0.77893125 0.778975  ]
+       mean score: 0.7792350000000001
+       std dev: 0.0011947482736961643
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function email_proc at 0x113b2f820>,
+                                                <function handle_proc at 0x113b42790>,
+                                                <function url_proc at 0x113b57f70>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.77995625 0.78038125 0.78123125 0.78135    0.783825   0.7813875
+0.78194375 0.77940625 0.7809875  0.7807875 ]
+       mean score: 0.781125625
+       std dev: 0.001144430978969467
+       
+--------------------------------------------------
