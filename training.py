@@ -1,16 +1,16 @@
 #%%
+from pathlib import Path
 from pandas import read_csv
-from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
-from preproc_tools import email_proc
+import preproc_tools as pt
 
 ### DATA INGESTION
 
 data = read_csv(
-    'data/train.csv',
+    Path('./data/train.csv'),
     names=['sentiment', 'id', 'date', 'query', 'handle', 'tweet']
 )
 
@@ -20,10 +20,18 @@ y = data['sentiment'].replace(to_replace=4, value=1)
 
 ### PIPELINE CREATION 
 
+preprocessors = [
+    pt.email_proc,
+    pt.handle_proc,
+    pt.url_proc,
+    pt.mult_letters_proc,
+    pt.html_proc,
+]
+
 pipe = make_pipeline(
     # pre-processing
-    CountVectorizer(
-        preprocessor=email_proc
+    pt.CustomVectorizer(
+        preprocessors=preprocessors
     ),
     # training
     MultinomialNB()
@@ -52,4 +60,5 @@ with open('score.txt', 'w') as file:
         f'mean score: {scores.mean()}\nstd dev: {scores.std()}\n'
     )
 
+scores
 #%%

@@ -1,4 +1,24 @@
 from re import sub
+from sklearn.feature_extraction.text import CountVectorizer
+
+class CustomVectorizer(CountVectorizer):
+    '''Custom vectorizer allowing the use of a given sequence of the preprocessors defined bellow.'''
+
+    def __init__(self, preprocessors=None, **kwargs):
+        super().__init__(**kwargs)
+        self.preprocessors = preprocessors
+
+    def build_preprocessor(self):
+        '''Concatenate preprocessors to be used in the CountVectorizer.'''
+        if self.preprocessors in [None, []]:
+            preprocess = super().build_preprocessor()
+        else:
+            def preprocess(tweet):
+                for preproc in self.preprocessors:
+                    tweet = preproc(tweet)
+                return tweet
+        return preprocess
+        #return lambda tweet: preprocess(tweet)
 
 def email_proc(tweet):
     '''Replace every email in the tweet by the string "EMAIL". The regexp used here is simple but should be enough for most cases.'''
