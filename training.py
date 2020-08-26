@@ -5,6 +5,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
+from sklearn.feature_extraction.text import TfidfTransformer
 import preproc_tools as pt
 import log_tools as lt
 
@@ -22,20 +23,22 @@ y = data['sentiment'].replace(to_replace=4, value=1)
 ### PIPELINE CREATION 
 
 preprocessors = [
+    #pt.email_proc,
+    #pt.handle_proc,
+    #pt.url_proc,
     #pt.mult_letters_proc,
-    pt.email_proc,
-    pt.handle_proc,
-    pt.url_proc,
     #pt.html_proc,
 ]
 
 pipe = make_pipeline(
     # pre-processing
     pt.CustomVectorizer(
-        preprocessors=preprocessors
+        preprocessors=preprocessors,
+        ngram_range=(1, 2),
     ),
+    TfidfTransformer(),
     # training
-    MultinomialNB()
+    MultinomialNB(),
 )
 
 ### CROSS-VALIDATION DEFINITION

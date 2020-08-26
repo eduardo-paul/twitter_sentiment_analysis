@@ -15,7 +15,7 @@ def log_scores(pipe, scores, path):
         mean score: {scores.mean()}
         std dev: {scores.std()}
         '''
-    ) + '\n' + 50*'-' + '\n'
+    ) + '\n' + 50*'-' + '\n\n'
 
     with open(path, 'a') as file:
         file.write(log)

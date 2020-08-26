@@ -1,12 +1,23 @@
+import copy
 from re import sub
+import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 
 class CustomVectorizer(CountVectorizer):
     '''Custom vectorizer allowing the use of a given sequence of the preprocessors defined bellow.'''
 
     def __init__(self, preprocessors=None, **kwargs):
-        super().__init__(**kwargs)
         self.preprocessors = preprocessors
+        super().__init__(**kwargs)
+
+    # The class was not working properly inside the cross validation function. The hack below makes it work, although the __repr__ includes every parameter, even the defaults. Taken from https://stackoverflow.com/questions/51430484/how-to-subclass-a-vectorizer-in-scikit-learn-without-repeating-all-parameters-in.
+    def get_params(self, deep=True):
+        params = super().get_params(deep)
+        # Hack to make get_params return base class params...
+        cp = copy.copy(self)
+        cp.__class__ = CountVectorizer
+        params.update(CountVectorizer.get_params(cp, deep))
+        return params
 
     def build_preprocessor(self):
         '''Concatenate preprocessors to be used in the CountVectorizer.'''
