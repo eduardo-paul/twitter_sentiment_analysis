@@ -6,6 +6,7 @@
        std dev: 0.0012277399205450636
        
 --------------------------------------------------
+
        pipeline: Pipeline(steps=[('customvectorizer',
                 CustomVectorizer(preprocessors=[<function mult_letters_proc at 0x113b5adc0>])),
                ('multinomialnb', MultinomialNB())])
@@ -15,6 +16,7 @@
        std dev: 0.0011978674084075485
        
 --------------------------------------------------
+
        pipeline: Pipeline(steps=[('customvectorizer',
                 CustomVectorizer(preprocessors=[<function email_proc at 0x113b2f820>])),
                ('multinomialnb', MultinomialNB())])
@@ -24,6 +26,7 @@
        std dev: 0.001164304546982882
        
 --------------------------------------------------
+
        pipeline: Pipeline(steps=[('customvectorizer',
                 CustomVectorizer(preprocessors=[<function handle_proc at 0x113b42790>])),
                ('multinomialnb', MultinomialNB())])
@@ -33,6 +36,7 @@
        std dev: 0.001188526694325785
        
 --------------------------------------------------
+
        pipeline: Pipeline(steps=[('customvectorizer',
                 CustomVectorizer(preprocessors=[<function url_proc at 0x113b57f70>])),
                ('multinomialnb', MultinomialNB())])
@@ -42,6 +46,7 @@
        std dev: 0.0012066387003262255
        
 --------------------------------------------------
+
        pipeline: Pipeline(steps=[('customvectorizer',
                 CustomVectorizer(preprocessors=[<function html_proc at 0x113b5ae50>])),
                ('multinomialnb', MultinomialNB())])
@@ -51,6 +56,7 @@
        std dev: 0.0012395848914555935
        
 --------------------------------------------------
+
        pipeline: Pipeline(steps=[('customvectorizer',
                 CustomVectorizer(preprocessors=[<function email_proc at 0x113b2f820>,
                                                 <function handle_proc at 0x113b42790>])),
@@ -61,6 +67,7 @@
        std dev: 0.0011947482736961643
        
 --------------------------------------------------
+
        pipeline: Pipeline(steps=[('customvectorizer',
                 CustomVectorizer(preprocessors=[<function email_proc at 0x113b2f820>,
                                                 <function handle_proc at 0x113b42790>,
@@ -72,3 +79,119 @@
        std dev: 0.001144430978969467
        
 --------------------------------------------------
+
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function url_proc at 0x138989040>,
+                                                <function mult_letters_proc at 0x138989e50>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.7835625  0.78386875 0.7844875  0.78396875 0.786975   0.78294375
+0.7848875  0.7827     0.78289375 0.7830875 ]
+       mean score: 0.7839375000000001
+       std dev: 0.0012210075245468227
+       
+--------------------------------------------------
+
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(preprocessors=[<function mult_letters_proc at 0x138989e50>,
+                                                <function url_proc at 0x138989040>])),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.783625   0.78386875 0.78455625 0.78369375 0.78695625 0.782875
+0.78481875 0.782625   0.782775   0.78313125]
+       mean score: 0.7838925000000001
+       std dev: 0.0012355913311042684
+       
+--------------------------------------------------
+
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(analyzer='word', binary=False,
+                                 decode_error='strict',
+                                 dtype=<class 'numpy.int64'>, encoding='utf-8',
+                                 input='content', lowercase=True, max_df=1.0,
+                                 max_features=None, min_df=1,
+                                 ngram_range=(1, 2), preprocessor=None,
+                                 preprocessors=[], stop_words=None,
+                                 strip_accents=None,
+                                 token_pattern='(?u)\\b\\w\\w+\\b',
+                                 tokenizer=None, vocabulary=None)),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.80096875 0.8007125  0.80154375 0.8024875  0.8035125  0.80185
+0.80330625 0.802025   0.8003875  0.80035   ]
+       mean score: 0.8017143750000001
+       std dev: 0.001081242955179347
+       
+--------------------------------------------------
+
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(analyzer='word', binary=False,
+                                 decode_error='strict',
+                                 dtype=<class 'numpy.int64'>, encoding='utf-8',
+                                 input='content', lowercase=True, max_df=1.0,
+                                 max_features=None, min_df=1,
+                                 ngram_range=(1, 2), preprocessor=None,
+                                 preprocessors=[<function url_proc at 0x13f673f70>],
+                                 stop_words=None, strip_accents=None,
+                                 token_pattern='(?u)\\b\\w\\w+\\b',
+                                 tokenizer=None, vocabulary=None)),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.7999875  0.7993125  0.801      0.80170625 0.80349375 0.8015125
+0.801625   0.80049375 0.79946875 0.79923125]
+       mean score: 0.8007831249999999
+       std dev: 0.0012846328816533683
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(analyzer='word', binary=False,
+                                 decode_error='strict',
+                                 dtype=<class 'numpy.int64'>, encoding='utf-8',
+                                 input='content', lowercase=True, max_df=1.0,
+                                 max_features=None, min_df=1,
+                                 ngram_range=(1, 2), preprocessor=None,
+                                 preprocessors=[<function mult_letters_proc at 0x13f675040>],
+                                 stop_words=None, strip_accents=None,
+                                 token_pattern='(?u)\\b\\w\\w+\\b',
+                                 tokenizer=None, vocabulary=None)),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.7989375  0.79824375 0.80066875 0.801025   0.80189375 0.80018125
+0.80081875 0.8002     0.79845    0.79854375]
+       mean score: 0.79989625
+       std dev: 0.0012023388665430349
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(analyzer='word', binary=False,
+                                 decode_error='strict',
+                                 dtype=<class 'numpy.int64'>, encoding='utf-8',
+                                 input='content', lowercase=True, max_df=1.0,
+                                 max_features=None, min_df=1,
+                                 ngram_range=(2, 2), preprocessor=None,
+                                 preprocessors=[], stop_words=None,
+                                 strip_accents=None,
+                                 token_pattern='(?u)\\b\\w\\w+\\b',
+                                 tokenizer=None, vocabulary=None)),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.779725   0.78035    0.78183125 0.78595625 0.78769375 0.78650625
+0.78248125 0.786975   0.7844875  0.78016875]
+       mean score: 0.7836175
+       std dev: 0.002909706009633961
+       
+--------------------------------------------------
+       pipeline: Pipeline(steps=[('customvectorizer',
+                CustomVectorizer(analyzer='word', binary=False,
+                                 decode_error='strict',
+                                 dtype=<class 'numpy.int64'>, encoding='utf-8',
+                                 input='content', lowercase=True, max_df=1.0,
+                                 max_features=None, min_df=1,
+                                 ngram_range=(1, 2), preprocessor=None,
+                                 preprocessors=[], stop_words=None,
+                                 strip_accents=None,
+                                 token_pattern='(?u)\\b\\w\\w+\\b',
+                                 tokenizer=None, vocabulary=None)),
+               ('tfidftransformer', TfidfTransformer()),
+               ('multinomialnb', MultinomialNB())])
+       scores: [0.80233125 0.802225   0.8039375  0.80421875 0.805575   0.80400625
+0.80471875 0.80420625 0.8028625  0.8019125 ]
+       mean score: 0.8035993749999999
+       std dev: 0.0011433928745733055
+       
+--------------------------------------------------
+

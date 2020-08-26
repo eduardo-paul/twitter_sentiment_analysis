@@ -22,17 +22,18 @@ y = data['sentiment'].replace(to_replace=4, value=1)
 ### PIPELINE CREATION 
 
 preprocessors = [
+    #pt.email_proc,
+    #pt.handle_proc,
+    #pt.url_proc,
     #pt.mult_letters_proc,
-    pt.email_proc,
-    pt.handle_proc,
-    pt.url_proc,
     #pt.html_proc,
 ]
 
 pipe = make_pipeline(
     # pre-processing
     pt.CustomVectorizer(
-        preprocessors=preprocessors
+        preprocessors=preprocessors,
+        ngram_range=(2, 2),
     ),
     # training
     MultinomialNB()
