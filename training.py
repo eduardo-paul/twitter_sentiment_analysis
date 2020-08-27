@@ -3,7 +3,7 @@ from pathlib import Path
 from pandas import read_csv
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import LinearSVC
 from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction.text import TfidfTransformer
 import preproc_tools as pt
@@ -38,13 +38,13 @@ pipe = make_pipeline(
     ),
     TfidfTransformer(),
     # training
-    MultinomialNB(),
+    LinearSVC(),
 )
 
 ### CROSS-VALIDATION DEFINITION
 
 k_fold = KFold(
-    n_splits=10,
+    n_splits=5,
     shuffle=True,
     random_state=101
 )
