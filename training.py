@@ -1,12 +1,14 @@
 #%%
 from pathlib import Path
+from numpy import linspace
 from pandas import read_csv
+from scipy.stats import norm
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
 from sklearn.svm import LinearSVC
 from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction.text import TfidfTransformer
-import preproc_tools as pt
+from sklearn.model_selection import RandomizedSearchCV
 import log_tools as lt
 
 ### DATA INGESTION
@@ -22,18 +24,9 @@ y = data['sentiment'].replace(to_replace=4, value=1)
 
 ### PIPELINE CREATION 
 
-preprocessors = [
-    #pt.email_proc,
-    #pt.handle_proc,
-    #pt.url_proc,
-    #pt.mult_letters_proc,
-    #pt.html_proc,
-]
-
 pipe = make_pipeline(
     # pre-processing
-    pt.CustomVectorizer(
-        preprocessors=preprocessors,
+    pt.CountVectorizer(
         ngram_range=(1, 2),
     ),
     TfidfTransformer(),
@@ -51,12 +44,32 @@ k_fold = KFold(
 
 ### TRAINING AND VALIDATION
 
-scores = cross_val_score(
-    pipe,
-    X,
-    y,
-    cv=k_fold,
-    n_jobs=-1
+#scores = cross_val_score(
+#    pipe,
+#    X,
+#    y,
+#    cv=k_fold,
+#    n_jobs=-1
+#)
+
+### GRID SEARCHING
+
+parameters = {'linearsvc__C': norm(loc=.23, scale=.1)}
+
+grid_search = RandomizedSearchCV(
+    estimator=pipe,
+    param_distributions=parameters,
+    n_iter=10,
+    cv = k_fold,
+    n_jobs=-1,
 )
 
-lt.log_scores(pipe, scores, Path('./score.txt'))
+grid_search.fit(X, y)
+
+results = grid_search.cv_results_
+
+lt.log_grid_search(
+    pipe,
+    results,
+    Path('./grid_search_results.txt'),
+)

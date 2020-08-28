@@ -249,3 +249,57 @@ mean score: 0.822063125
 std dev: 0.0005711091182952621
 --------------------------------------------------
 
+pipeline: Pipeline(steps=[('customvectorizer',
+         CustomVectorizer(analyzer='word', binary=False,
+                          decode_error='strict',
+                          dtype=<class 'numpy.int64'>, encoding='utf-8',
+                          input='content', lowercase=True, max_df=1.0,
+                          max_features=None, min_df=1,
+                          ngram_range=(1, 2), preprocessor=None,
+                          preprocessors=[], stop_words=None,
+                          strip_accents=None,
+                          token_pattern='(?u)\\b\\w\\w+\\b',
+                          tokenizer=None, vocabulary=None)),
+        ('tfidftransformer', TfidfTransformer()),
+        ('linearsvc', LinearSVC(C=10))])
+scores: [0.801675   0.80313437 0.8038375  0.80320625 0.80221562]
+mean score: 0.80281375
+std dev: 0.0007693407283187207
+--------------------------------------------------
+
+pipeline: Pipeline(steps=[('customvectorizer',
+         CustomVectorizer(analyzer='word', binary=False,
+                          decode_error='strict',
+                          dtype=<class 'numpy.int64'>, encoding='utf-8',
+                          input='content', lowercase=True, max_df=1.0,
+                          max_features=None, min_df=1,
+                          ngram_range=(1, 2), preprocessor=None,
+                          preprocessors=[], stop_words=None,
+                          strip_accents=None,
+                          token_pattern='(?u)\\b\\w\\w+\\b',
+                          tokenizer=None, vocabulary=None)),
+        ('tfidftransformer', TfidfTransformer()),
+        ('linearsvc', LinearSVC(C=0.1))])
+scores: [0.82323125 0.82502188 0.82563438 0.82492188 0.82474375]
+mean score: 0.824710625
+std dev: 0.0007980557428839376
+--------------------------------------------------
+
+pipeline: Pipeline(steps=[('customvectorizer',
+         CustomVectorizer(analyzer='word', binary=False,
+                          decode_error='strict',
+                          dtype=<class 'numpy.int64'>, encoding='utf-8',
+                          input='content', lowercase=True, max_df=1.0,
+                          max_features=None, min_df=1,
+                          ngram_range=(1, 2), preprocessor=None,
+                          preprocessors=[], stop_words=None,
+                          strip_accents=None,
+                          token_pattern='(?u)\\b\\w\\w+\\b',
+                          tokenizer=None, vocabulary=None)),
+        ('tfidftransformer', TfidfTransformer()),
+        ('linearsvc', LinearSVC(C=0.01))])
+scores: [0.80206875 0.8029625  0.80422812 0.80425313 0.80279375]
+mean score: 0.80326125
+std dev: 0.0008542279957657637
+--------------------------------------------------
+
